@@ -143,6 +143,7 @@ header{
 
     height: 10%;
     overflow: hidden;
+   // background-color: #30353E;
     background-color:#333333;
 
 
@@ -225,4 +226,117 @@ header{
 #tabsize{
 
     margin-left: 10px;
+}
+
+
+
+div.modal-dialog{
+
+width: 350px;
+
+}
+
+
+.modal-title{
+
+    text-align: center;
+}
+
+
+
+
+.login-index,.signup-index{
+
+    background-color: transparent;
+    color: #F3F3F4;
+    width: 80px;
+    margin: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px;
+
+}
+
+
+
+.signup-index{
+
+
+    text-align: center;
+}
+
+
+
+.index-logo img{
+
+    width: 270px;
+    height: 40px;
+    margin-top: 50px;
+}
+
+
+.index-h{
+
+
+    color: #F3F3F4;
+    background-color: transparent;
+    text-align: center;
+    padding:5px;
+    margin-top: 35px;
+
+}
+
+
+.index-h h1{
+
+    font-size: 48px;
+}
+
+
+
+.index-btn{
+
+
+    width: 170px;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: 500px;
+    font-size: 17px;
+}
+
+
+.img-index{
+
+    margin-top: 48px;
+    margin-left: 75px;
+    //width: 700px;
+    //height: 500px;
+    border-radius: 5px;
+
+
+}
+
+
+footer{
+
+    background-color: #262626;
+    color: #000;
+    margin-top:72px;
+    height: 100px;
+    text-align: center;
+
+}
+
+
+footer ul,li{
+
+    text-decoration: none;
+    list-style: none;
+    display: inline;
+}
+
+.footer-row{
+
+    margin-top: 30px;
 }
