@@ -1,3 +1,30 @@
+<?php
+require ('functions.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name="";
+    $email="";
+    $password="";
+
+    $name=$_POST['full_name'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+
+    $tmp  = "Name: ";
+    $tmp .= $name;
+    $tmp .= " ";
+    $tmp .= "Email: ";
+    $tmp .= $email;
+    $tmp .= " ";
+    $tmp .= "Password: ";
+    $tmp .= $password ;
+    $tmp .= " ";
+
+    print_signup_value($tmp);
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +44,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 logo" >
-                <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+                <a href="index.php"><img src="img/logo.png" alt="logo"></a>
             </div>
             <div class="col-md-6  signup">
-                <button class="btn btn-default" onclick="location.href='login.html';"
+                <button class="btn btn-default" onclick="location.href='login.php';"
 >Login</button>
             </div>
         </div>
@@ -35,22 +62,22 @@
 
             <!-- Signup from -->
 
-        <form class="login-form-container form">
+        <form class="login-form-container form" action="signup.php" method="post">
             <div class="full-width">
             <span id="error" style="display:none"></span>
                 <div class="form-field">
-                    <input type="text" placeholder="Enter full Name" required autofoucs>
+                    <input type="text" name="full_name" placeholder="Enter full Name" required autofoucs>
                 </div>
                 <div class="form-field">
-                    <input type="email" placeholder="Email" required autofoucs>
+                    <input type="email" name="email" placeholder="Email" required autofoucs>
                 </div>
                 <div class="form-field">
                     <input type="password" name="password" placeholder="Password" required autofoucs>
                 </div>
                 <button type="submit" class="btn btn-primary">Log In</button>
             </div>
-        </from>
-        <p id="forget" class="forget" >Already have account?&nbsp;<a href="login.html" style="text-decoration: none;">Login </a></p>
+        </form>
+        <p id="forget" class="forget" >Already have account?&nbsp;<a href="login.php" style="text-decoration: none;">Login </a></p>
 
     </div>
 

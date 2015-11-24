@@ -17,9 +17,9 @@
 <header>
      <div class="header-main" style="text-align: right;">
 
-        <button class="btn btn-default login-index" onclick="location.href='signup.html';"
+        <button class="btn btn-default login-index" onclick="location.href='signup.php';"
 >Sign Up</button>
-        <button class="btn btn-default signup-index" onclick="location.href='login.html';"
+        <button class="btn btn-default signup-index" onclick="location.href='login.php';"
 >Login</button>
      </div>
 </header>
@@ -29,7 +29,7 @@
             <div class="col-md-12" style="text-align: center;margin-top: 10px;">
 
 
-    <a href="index.html" class="index-logo"><img src="img/logo.png"></a>
+    <a href="index.php" class="index-logo"><img src="img/logo.png"></a>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
 
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
-                <button type="button" class="btn btn-danger index-btn" onclick="location.href='home.html';"
+                <button type="button" class="btn btn-danger index-btn" onclick="location.href='home.php';"
 >Share Code Now</button>
             </div>
         </div>

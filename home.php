@@ -17,14 +17,14 @@
     <div class="header-main">
 
         <div class="logo logo-home">
-             <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+             <a href="index.php"><img src="img/logo.png" alt="logo"></a>
         </div>
 
 
         <div class="nav-main">
             <button class="btn btn-default" id="save-btn" style="background-color: #EC3360;border-color: #ea1c4e;text-align: center;width:130px;height: 35px;">Save your Code</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Settings</button>
-            <button class="btn btn-default" onclick="location.href='login.html';"
+            <button class="btn btn-default" onclick="location.href='login.php';"
 >Login</button>
         </div>
 
