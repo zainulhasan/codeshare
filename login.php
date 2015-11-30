@@ -1,5 +1,6 @@
 <?php
-require ('functions.php');
+require ('config.php');
+$error="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username="";
@@ -8,14 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username=$_POST['email'];
     $password=$_POST['password'];
 
-    $tmp  = "Username: ";
-    $tmp .= $username;
-    $tmp .= " ";
-    $tmp .= "Password: ";
-    $tmp .= $password ;
-    $tmp .= " ";
+    if( db_connect($username,$password)==true){
 
-    print_login_value($tmp);
+     $error="Working";
+
+    }else{
+
+        $error="Not Working";
+    }
 
 }
 
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form class="login-form-container form" action="login.php" method="post">
             <div class="full-width">
-            <span id="error" style="display:none"></span>
+            <span id="error"><?php echo $error;?></span>
                 <div class="form-field">
                     <input type="email" name="email" placeholder="Email" required autofoucs>
                 </div>
