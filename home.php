@@ -1,3 +1,23 @@
+<?php
+
+    session_start();
+
+
+    include('function.php');
+    $name="";
+    $btn_value="Login";
+    if(isset($_SESSION['user'])){
+        $email=$_SESSION['user'];
+        $btn_value="Logout";
+        $name=get_name_by_email($email);
+
+        }
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +28,27 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="js/respond.js">
 
+    <style>
+        #current_user{
+
+            background-color: transparent;
+            border-color: transparent;
+            text-align: center;
+            width:200px;
+            height: 35px;
+            font-size:17px;
+        }
+
+        #current_user:hover{
+
+            color:#fff;
+
+        }
+        #current_user:hover {
+            cursor: pointer;
+
+        }
+    </style>
 
 </head>
 <body>
@@ -22,10 +63,10 @@
 
 
         <div class="nav-main">
+            <button class="btn btn-default" id="current_user" disabled><?php echo $name ;?></button>
             <button class="btn btn-default" id="save-btn" style="background-color: #EC3360;border-color: #ea1c4e;text-align: center;width:130px;height: 35px;">Save your Code</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Settings</button>
-            <button class="btn btn-default" onclick="location.href='login.php';"
->Login</button>
+            <button class="btn btn-default" onclick=redirect();><?php echo $btn_value;?></button>
         </div>
 
     </div>
@@ -157,8 +198,22 @@
 
     }
 
+    function redirect(){
 
+        <?php
 
+         if (isset($_SESSION['user'])){
+
+            unset($_SESSION['user']);
+            echo "location.href='index.php'";
+
+            }else{
+
+            echo "location.href='login.php'";
+
+            }
+        ?>
+    }
 
 </script>
 </body>

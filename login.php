@@ -1,26 +1,38 @@
 <?php
+session_start();
 require ('config.php');
 $error="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username="";
-    $password="";
+    $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
 
-    $username=$_POST['email'];
+    $email=$_POST['email'];
     $password=$_POST['password'];
 
-    if( db_connect($username,$password)==true){
+        global $connection;
+        $sql="SELECT id FROM user WHERE email='$email' AND password='$password'";
+        $result=$connection->query($sql);
+        if($result->num_rows ==1){
 
-     $error="Working";
+            $_SESSION['user']=$email;
+            header('location:home.php');
+        }
 
-    }else{
+        else{
 
-        $error="Not Working";
-    }
+            $error="Invalid user/password";
+        }
+
+
+
+    $connection->close();
 
 }
 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-md-6  signup">
                 <button class="btn btn-default" onclick="location.href='signup.php';"
->Sign up</button>
+                >Sign up</button>
             </div>
         </div>
     </div>
@@ -56,11 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1 class="is-tile heading">Log in to access your saved code</h1>
 
-            <!-- Signup from -->
+        <!-- Signup from -->
 
         <form class="login-form-container form" action="login.php" method="post">
             <div class="full-width">
-            <span id="error"><?php echo $error;?></span>
+                <span id="error"><?php echo $error;?></span>
                 <div class="form-field">
                     <input type="email" name="email" placeholder="Email" required autofoucs>
                 </div>

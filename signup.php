@@ -1,26 +1,26 @@
 <?php
-require ('functions.php');
+require ('config.php');
+$error='';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $name="";
-    $email="";
-    $password="";
+
 
     $name=$_POST['full_name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
 
-    $tmp  = "Name: ";
-    $tmp .= $name;
-    $tmp .= " ";
-    $tmp .= "Email: ";
-    $tmp .= $email;
-    $tmp .= " ";
-    $tmp .= "Password: ";
-    $tmp .= $password ;
-    $tmp .= " ";
+    $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
 
-    print_signup_value($tmp);
+
+    $sql="INSERT INTO user (name ,email,password) values ('$name','$email','$password')";
+    if($connection->query($sql)==TRUE){
+
+        header('location:login.php');
+
+    }else{
+
+        $error='Please try again later.';
+    }
 
 }
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-field">
                     <input type="password" name="password" placeholder="Password" required autofoucs>
                 </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
         </form>
         <p id="forget" class="forget" >Already have account?&nbsp;<a href="login.php" style="text-decoration: none;">Login </a></p>

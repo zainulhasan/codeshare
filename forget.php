@@ -1,20 +1,50 @@
 <?php
-require ('functions.php');
+require ('config.php');
+$error="";
+$name="";
+$password="";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email="";
-
+    $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
     $email=$_POST['email'];
+    $sql="SELECT * FROM user WHERE email='$email'";
+    $result=$connection->query($sql);
+    if($result->num_rows ==1){
 
-    $tmp  = "Email: ";
-    $tmp .= $email;
-    $tmp .= " ";
+       while($row=$result->fetch_assoc()){
+
+        if($row['email']==$email){
+
+            $name=$row['name'];
+            $password=$row['password'];
+            header('location:login.php');
+            exit;
+
+           }else{
+
+                $error="Invalid Email";
+
+           }
+       }
 
 
-    print_forget_value($tmp);
+        $to      = $email;
+        $subject = 'Forget Password';
+        $message = 'Name: '.$name.'\n'.'Email : '. $email . '\n' .'Password: '. $password;
+       // mail($to, $subject, $message);
+    }
+
+    else{
+
+
+    }
+
+
+
+    $connection->close();
 
 }
-
 
 ?>
 
