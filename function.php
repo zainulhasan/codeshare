@@ -16,6 +16,41 @@
 
     $connection->close();
 
+    }
+
+
+    function get_id_by_email($email){
+        global $connection;
+        $sql="SELECT id FROM user WHERE email='$email'";
+        $result=$connection->query($sql);
+        if($result->num_rows ==1){
+            $row=$result->fetch_array();
+            return $row['id'];
+        }else{
+            return null;
+        }
+
+
+    $connection->close();
+
 }
+
+
+    function get_date_by_id($id){
+        global $connection;
+        $sql="SELECT id FROM code WHERE id='$id'";
+        $result=$connection->query($sql);
+        if($result->num_rows >0){
+            $row=$result->fetch_array();
+            return $row['data'];
+        }else{
+            return null;
+        }
+
+
+    $connection->close();
+
+}
+
 
 ?>

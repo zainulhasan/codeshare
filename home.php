@@ -1,18 +1,19 @@
 <?php
-
-    session_start();
-
-
     include('function.php');
-    $name="";
+    include('config.php');
+     $name="";
     $btn_value="Login";
-    if(isset($_SESSION['user'])){
-        $email=$_SESSION['user'];
+    session_start();
+    
+if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
         $btn_value="Logout";
         $name=get_name_by_email($email);
 
-        }
-
+}else{
+    
+    header('Location:login.php');
+}
 
 
 
@@ -66,7 +67,7 @@
             <button class="btn btn-default" id="current_user" disabled><?php echo $name ;?></button>
             <button class="btn btn-default" id="save-btn" style="background-color: #EC3360;border-color: #ea1c4e;text-align: center;width:130px;height: 35px;">Save your Code</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Settings</button>
-            <button class="btn btn-default" onclick=redirect();><?php echo $btn_value;?></button>
+            <button class="btn btn-default" id="logout_btn" onclick=redirect();><?php echo $btn_value;?></button>
         </div>
 
     </div>
@@ -165,10 +166,26 @@
     editor.setOption("highlightActiveLine", false);
 
 
-    document.getElementById('save-btn').onclick=function(){
+    //document.getElementById('save-btn').onclick=function(){
 
-        alert(editor.getSession().getValue());
-    }
+      //  alert(editor.getSession().getValue());
+    //}
+    
+    $("#save-btn").click(function(){
+        
+        var code=editor.getSession().getValue();
+        $.post(
+            
+            "hello.php",
+            {name:code},
+            function(resp){
+                alert(resp);
+            }
+        );
+    });
+    
+    
+    
     document.getElementById('update').onclick=function(){
         // Theme setting
         var T="ace/theme/";
@@ -179,7 +196,9 @@
         // Tab Setting
 
         var tabSize=document.getElementById('tabsize').value;
-        editor.getSession().setTabSize(tabSize);
+        var contant=editor.getSession().setTabSize(tabSize);
+        alert(contant);
+       
 
 
 
@@ -200,19 +219,7 @@
 
     function redirect(){
 
-        <?php
-
-         if (isset($_SESSION['user'])){
-
-            unset($_SESSION['user']);
-            echo "location.href='index.php'";
-
-            }else{
-
-            echo "location.href='login.php'";
-
-            }
-        ?>
+        <?php echo "location.href='logout.php'";?>
     }
 
 </script>

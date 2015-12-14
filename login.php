@@ -1,6 +1,7 @@
 <?php
-session_start();
+
 require ('config.php');
+session_start();
 $error="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -11,17 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         global $connection;
         $sql="SELECT id FROM user WHERE email='$email' AND password='$password'";
-        $result=$connection->query($sql);
-        if($result->num_rows ==1){
 
-            $_SESSION['user']=$email;
+    if ($result=mysqli_query($connection,$sql)) {
+
+        $rowcount=mysqli_num_rows($result);
+        if  ($rowcount==1) {
+
+            $_SESSION['email']=$email;
             header('location:home.php');
+        } else {
+
+            $error = "Invalid user/password";
         }
 
-        else{
 
-            $error="Invalid user/password";
-        }
+    }
 
 
 
