@@ -17,9 +17,10 @@
             
             $query="INSERT INTO code (data,email) VALUES ('$data','$email')";
             if($connection->query($query)==true){
-                echo $connection->insert_id();
+                echo $connection->insert_id;
             }else{
                 
+                echo "Noting found";
                 
             }
             

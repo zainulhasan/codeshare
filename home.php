@@ -179,7 +179,14 @@ if(isset($_SESSION['email'])){
             "hello.php",
             {name:code},
             function(resp){
-                alert(resp);
+               if(isNaN(resp)){
+                   alert("Error to execurte query in db.")
+               }else{
+                   
+                   var site="display.php?id=";
+                   window.location.href=site+resp;
+                   
+               }
             }
         );
     });
