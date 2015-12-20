@@ -13,11 +13,17 @@
         $result=$connection->query($query);
         if($result){
             $row=$result->fetch_array();
-            $tmp=str_replace(")",")<br/>",$row['data']);
+            $tmp=$row['data'];
+            if(empty($tmp)){
+                $tmp="<h1> Item Not Found in Database </h1>";
+                $site="";
+                $id="";
+            }
             
           
         }else{
             echo "<h1> Error </h1>";
+
         }
     }
 ?>

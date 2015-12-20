@@ -4,14 +4,14 @@
      $name="";
     $btn_value="Login";
     session_start();
-    
+
 if(isset($_SESSION['email'])){
         $email=$_SESSION['email'];
         $btn_value="Logout";
         $name=get_name_by_email($email);
 
 }else{
-    
+
     header('Location:login.php');
 }
 
@@ -76,12 +76,7 @@ if(isset($_SESSION['email'])){
 
 
 </div>
-<pre id="editor" class="editor">function foo(items) {
-    var i;
-    for (i = 0; i &lt; items.length; i++) {
-        alert("value " + items[i]);
-    }
-}</pre>
+<pre id="editor" class="editor">//Write Your Code Here......</pre>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade " role="dialog">
@@ -170,29 +165,39 @@ if(isset($_SESSION['email'])){
 
       //  alert(editor.getSession().getValue());
     //}
-    
+
     $("#save-btn").click(function(){
-        
+
         var code=editor.getSession().getValue();
-        $.post(
-            
-            "hello.php",
-            {name:code},
-            function(resp){
-               if(isNaN(resp)){
-                   alert("Error to execurte query in db.")
-               }else{
-                   
-                   var site="display.php?id=";
-                   window.location.href=site+resp;
-                   
-               }
-            }
-        );
+        var filename=prompt("Enter File name");
+        if(filename!=""){
+
+            $.post(
+                "hello.php",
+                {
+                    name:code,
+                    title:filename
+                },
+                function(resp){
+                    if(isNaN(resp)){
+                        alert("Error to execurte query in db.")
+                    }else{
+
+                        var site="display.php?id=";
+                        window.location.href=site+resp;
+
+                    }
+                }
+            );
+
+
+        }else{
+            alert("File can not save without name");
+        }
     });
-    
-    
-    
+
+
+
     document.getElementById('update').onclick=function(){
         // Theme setting
         var T="ace/theme/";
@@ -205,7 +210,7 @@ if(isset($_SESSION['email'])){
         var tabSize=document.getElementById('tabsize').value;
         var contant=editor.getSession().setTabSize(tabSize);
         alert(contant);
-       
+
 
 
 

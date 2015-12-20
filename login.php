@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if  ($rowcount==1) {
 
             $_SESSION['email']=$email;
-            header('location:home.php');
+            header('location:user.php');
         } else {
 
             $error = "Invalid user/password";

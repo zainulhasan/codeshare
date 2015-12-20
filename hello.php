@@ -3,6 +3,7 @@
     session_start();
     if(isset($_POST['name'])){
     $data=$_POST['name'];
+    $sub=$_POST['title'];
     $email=$_SESSION['email'];
     
                             
@@ -15,7 +16,7 @@
         
         if($connection){
             
-            $query="INSERT INTO code (data,email) VALUES ('$data','$email')";
+            $query="INSERT INTO code (data,email,subject) VALUES ('$data','$email','$sub')";
             if($connection->query($query)==true){
                 echo $connection->insert_id;
             }else{
