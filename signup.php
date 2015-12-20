@@ -1,26 +1,34 @@
 <?php
+session_start();
 require ('config.php');
 $error='';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_SESSION['email'])){
+    header("location:user.php");
+}else{
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $name=$_POST['full_name'];
-    $email=$_POST['email'];
-    $password=$_POST['password'];
+        $name=$_POST['full_name'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
 
-    $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
+        $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
 
 
-    $sql="INSERT INTO user (name ,email,password) values ('$name','$email','$password')";
-    if($connection->query($sql)==TRUE){
+        $sql="INSERT INTO user (name ,email,password) values ('$name','$email','$password')";
+        if($connection->query($sql)==TRUE){
 
-        header('location:login.php');
+            header('location:login.php');
 
-    }else{
+        }else{
 
-        $error='Please try again later.';
+            $error='Please try again later.';
+        }
+
     }
+
 
 }
 

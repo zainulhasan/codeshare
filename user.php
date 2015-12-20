@@ -89,7 +89,7 @@ if(isset($_SESSION['email'])){
 
 
         <div class="nav-main">
-            <button class="btn btn-default" id="current_user" disabled><?php echo $name ;?></button>
+            <button class="btn btn-default" id="current_user" onclick="user();"><?php echo $name ;?></button>
             <button class="btn btn-default" id="share-btn" style="background-color: #EC3360;border-color: #ea1c4e;text-align: center;width:130px;height: 35px;">Share Code Now</button>
             <button class="btn btn-default" id="logout_btn" onclick=redirect();><?php echo $btn_value;?></button>
         </div>
@@ -107,7 +107,7 @@ if(isset($_SESSION['email'])){
 
           if(count($ids)==0){
 
-              echo "<h1>No Item to Display.</h1>";
+              echo "<h3>No Item to Display.</h3>";
           }else{
 
               for($i=0;$i<count($ids);$i++){
@@ -143,6 +143,11 @@ if(isset($_SESSION['email'])){
     function redirect(){
 
         <?php echo "location.href='logout.php'";?>
+    }
+
+    function user(){
+
+        <?php echo "location.href='user.php'";?>
     }
 
 </script>

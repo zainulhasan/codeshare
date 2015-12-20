@@ -15,8 +15,9 @@
         );
         
         if($connection){
-            
-            $query="INSERT INTO code (data,email,subject) VALUES ('$data','$email','$sub')";
+
+            $date=date("F j, Y, g:i a");
+            $query="INSERT INTO code (data,email,subject,date) VALUES ('$data','$email','$sub','$date')";
             if($connection->query($query)==true){
                 echo $connection->insert_id;
             }else{

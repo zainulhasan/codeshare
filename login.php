@@ -3,34 +3,42 @@
 require ('config.php');
 session_start();
 $error="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_SESSION['email'])){
 
-    $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
+    header("location:user.php");
+}else{
 
-    $email=$_POST['email'];
-    $password=$_POST['password'];
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $connection=mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASSWORD'],$config['DB_NAME']);
+
+        $email=$_POST['email'];
+        $password=$_POST['password'];
 
         global $connection;
         $sql="SELECT id FROM user WHERE email='$email' AND password='$password'";
 
-    if ($result=mysqli_query($connection,$sql)) {
+        if ($result=mysqli_query($connection,$sql)) {
 
-        $rowcount=mysqli_num_rows($result);
-        if  ($rowcount==1) {
+            $rowcount=mysqli_num_rows($result);
+            if  ($rowcount==1) {
 
-            $_SESSION['email']=$email;
-            header('location:user.php');
-        } else {
+                $_SESSION['email']=$email;
+                header('location:user.php');
+            } else {
 
-            $error = "Invalid user/password";
+                $error = "Invalid user/password";
+            }
+
+
         }
 
 
+
+        $connection->close();
+
     }
-
-
-
-    $connection->close();
 
 }
 

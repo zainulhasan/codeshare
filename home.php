@@ -64,7 +64,7 @@ if(isset($_SESSION['email'])){
 
 
         <div class="nav-main">
-            <button class="btn btn-default" id="current_user" disabled><?php echo $name ;?></button>
+            <button class="btn btn-default" id="current_user" onclick="user();"><?php echo $name ;?></button>
             <button class="btn btn-default" id="save-btn" style="background-color: #EC3360;border-color: #ea1c4e;text-align: center;width:130px;height: 35px;">Save your Code</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Settings</button>
             <button class="btn btn-default" id="logout_btn" onclick=redirect();><?php echo $btn_value;?></button>
@@ -179,14 +179,9 @@ if(isset($_SESSION['email'])){
                     title:filename
                 },
                 function(resp){
-                    if(isNaN(resp)){
-                        alert("Error to execurte query in db.")
-                    }else{
-
                         var site="display.php?id=";
                         window.location.href=site+resp;
 
-                    }
                 }
             );
 
@@ -232,6 +227,11 @@ if(isset($_SESSION['email'])){
     function redirect(){
 
         <?php echo "location.href='logout.php'";?>
+    }
+
+    function user(){
+
+        <?php echo "location.href='user.php'";?>
     }
 
 </script>
